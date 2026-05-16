@@ -414,13 +414,13 @@ Freedom of religion
 Congratulations
 Annual convention
 Different faiths
-Mosque
+mosque
 His Holiness
 Hospitality
 Spiritual
 Greetings
-Slam a lay koom
-Amady-aa
+"Slam a lay koom"
+"Amady-aa"
 Neighbours
 Charitable works
 Service to humanity
@@ -459,6 +459,7 @@ Jall-sa Slaina
     const shareBtn = document.getElementById("shareBtn");
 
     const LAST_CARD_KEY = "bingo-last-card-id";
+    const WORD_SOURCE_VERSION = "love-rtf-2026-02-10";
 
     function shuffle(arr) {
       const copy = arr.slice();
@@ -644,7 +645,7 @@ Jall-sa Slaina
         }
       }
       const marks = cardWords.map((word, idx) => freeCenter && idx === 12 ? true : false);
-      return { id: seed, seed, words: cardWords, freeCenter, marks, completedLines: [], winCount: 0 };
+      return { id: seed, seed, words: cardWords, freeCenter, marks, completedLines: [], winCount: 0, wordSourceVersion: WORD_SOURCE_VERSION };
     }
 
     function generateNewCard() {
@@ -764,7 +765,7 @@ Jall-sa Slaina
         const lastId = localStorage.getItem(LAST_CARD_KEY);
         if (lastId) {
           const card = loadCard(lastId);
-          if (card) {
+          if (card && card.wordSourceVersion === WORD_SOURCE_VERSION) {
             freeCenterEl.checked = card.freeCenter;
             renderCard(card);
             return;
